@@ -1,0 +1,46 @@
+{
+  "name": "Redux Search",
+  "version": "0.0.1",
+  "description": "Search the redux state tree.",
+  "short_name": "Redux Search",
+  "homepage_url": "https://github.com/acodesmith/redux-search",
+  "manifest_version": 2,
+  "page_action": {
+    "default_icon": "img/logo/redux-search-logo-grey.png",
+    "default_title": "Redux Search"
+  },
+  "icons": {
+    "16": "img/logo/16x16.png",
+    "48": "img/logo/32x32.png",
+    "128": "img/logo/192x192.png"
+  },
+  "options_ui": {
+    "page": "options.html",
+    "chrome_style": true
+  },
+  "background": {
+    "scripts": ["background.bundle.js"],
+    "persistent": false
+  },
+  "content_scripts": [
+    {
+      "matches": ["<all_urls>"],
+      "exclude_globs": ["https://www.google*"],
+      "js": ["content.js", "pagewrap.js"],
+      "run_at": "document_start",
+      "all_frames": true
+    }
+  ],
+  "devtools_page": "devtools.html",
+  "externally_connectable": {
+    "ids": ["*"]
+  },
+  "permissions": [
+    "notifications",
+    "contextMenus",
+    "tabs",
+    "storage",
+    "<all_urls>"
+  ],
+  "content_security_policy": "script-src 'self' 'unsafe-eval'; object-src 'self'; style-src * 'unsafe-inline'; img-src 'self' data:;"
+}
