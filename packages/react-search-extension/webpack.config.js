@@ -5,6 +5,7 @@ module.exports = {
 	entry: {
 		background: "./src/background.js",
 		content: "./src/content.js",
+		devpanel: "./src/devpanel.js",
 		devtools: "./src/devtools.js",
 		pagewrap: "./src/pagewrap.js",
 	},
@@ -12,6 +13,8 @@ module.exports = {
 		path: path.resolve(__dirname, "dist"),
 		filename: "[name].bundle.js",
 	},
+	devtool: false,
+	mode: "production",
 	module: {
 		rules: [
 			{
