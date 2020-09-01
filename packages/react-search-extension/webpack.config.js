@@ -14,20 +14,24 @@ module.exports = {
 		filename: "[name].bundle.js",
 	},
 	devtool: false,
-	mode: "production",
+	mode: "development",
 	module: {
 		rules: [
 			{
-				test: /\.m?js$/,
+				test: /\.(ts|js)x?$/,
 				exclude: /(node_modules|bower_components)/,
 				use: {
 					loader: "babel-loader",
-					options: {
-						presets: ["@babel/preset-env"],
-					},
 				},
 			},
+			{
+				test: /\.css$/i,
+				use: ["style-loader", "css-loader"],
+			},
 		],
+	},
+	resolve: {
+		extensions: [".tsx", ".ts", ".js", "jsx"],
 	},
 	plugins: [
 		new CopyPlugin({
