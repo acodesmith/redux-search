@@ -6,9 +6,9 @@ interface SearchProps {
 
 export const Search: React.FC<SearchProps> = () => {
   return (
-    <div>
+    <section className="rs-search-wrapper">
       <label htmlFor="rs-search">Search</label>
       <input type="search" name="rs-search" />
-    </div>
+    </section>
   );
 };
