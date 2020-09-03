@@ -36,7 +36,7 @@ module.exports = {
 	plugins: [
 		new CopyPlugin({
 			patterns: [
-				{ from: "../react-search-common/assets/", to: "assets" },
+				{ from: "../redux-search-common/assets/", to: "assets" },
 				{ from: "./src/manifest.json", to: "" },
 				{ from: "./static/", to: "" },
 			],
