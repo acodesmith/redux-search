@@ -1,8 +1,63 @@
-.rs-search-wrapper {
-  label {
-    font-size: 2rem;
-  }
-  input {
-    font-size: 2rem;
+:root {
+  --main-background: #fff;
+  --main-color: #222;
+  --heading-color: #000;
+  --border-color: #bfbfbf;
+  --alt-color: var(--border-color);
+  --item-color: #1001ab;
+  --important-color: #ee0000;
+  --input-color: --main-color;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --main-background: #333333;
+    --main-color: #5cb0d7;
+    --heading-color: #ababab;
+    --border-color: #606976;
+    --alt-color: var(--border-color);
+    --item-color: #bdc6cf;
+    --input-color: var(--item-color);
   }
 }
+
+body {
+  background: var(--main-background);
+  color: var(--main-color);
+  font-family: monospace;
+  margin: 0;
+  padding: 0;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5 {
+  color: var(--heading-color);
+}
+
+.rs-layout {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+
+  .rs-controls {
+    display: flex;
+    flex-direction: row;
+
+    .rs-search-wrapper {
+      flex: 1;
+    }
+  }
+
+  .rs-content {
+    flex: 1;
+    overflow: scroll;
+  }
+}
+
+@import './icons.scss';
+@import './options.scss';
+@import './search.scss';
+@import './visualize.scss';

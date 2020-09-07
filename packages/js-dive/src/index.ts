@@ -21,8 +21,9 @@ export interface JSDiveNotification {
 }
 
 /**
- * { a: { b: [ { c: 'answer' } ] } }
- * a.b[0].c = 'answer'
+ * Object shape: { a: { b: [ { c: 'answer' } ] } };
+ * Selector shape: a.b[0].c = 'answer';
+ * Accessor shape: [ 'a', 'b', 0, 'c' ];
  */
 export default class JSDive {
   items: JSDiveItem[];
@@ -68,10 +69,14 @@ export default class JSDive {
   }
 
   search(value, data) {
-    this.recursiveSearch(value, data);
+    this.items = [];
+    this.notifications = [];
+    this.dive(value, data);
+
+    return this;
   }
 
-  recursiveSearch(value, data, accessor = [], depth = 0) {
+  dive(value, data, accessor = [], depth = 0) {
     if (depth > this.options.maxDepth || !value || value === '') {
       return;
     }
@@ -95,18 +100,13 @@ export default class JSDive {
       } else {
         depth += 1;
         for (let n = 0; n < data.length; n += 1) {
-          this.recursiveSearch(value, data[n], [].concat(accessor, [n]), depth);
+          this.dive(value, data[n], [].concat(accessor, [n]), depth);
         }
       }
     } else if (typeof data === 'object') {
       const objDepth = depth + 1;
       for (const i of Object.keys(data)) {
-        this.recursiveSearch(
-          value,
-          data[i],
-          [].concat(accessor, [i]),
-          objDepth
-        );
+        this.dive(value, data[i], [].concat(accessor, [i]), objDepth);
       }
     }
   }

@@ -7,6 +7,8 @@ module.exports = {
 	output: {
 		path: path.resolve(__dirname, "dist"),
 		filename: "[name].js",
+		library: "js-dive",
+		libraryTarget: "umd",
 	},
 	devtool: false,
 	mode: "development",

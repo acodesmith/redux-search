@@ -1,0 +1,35 @@
+.icon-base {
+  height: 1rem;
+  display: inline-block;
+  position: relative;
+  width: 1rem;
+
+  &:before,
+  &:after {
+    content: '';
+    display: block;
+  }
+}
+
+.icon-search {
+  @extend .icon-base;
+  height: 1.5rem;
+  transform: rotate(-45deg) scale(0.5);
+
+  &:before {
+    border: 2px solid var(--border-color);
+    border-radius: 50%;
+    height: 1rem;
+    width: 1rem;
+  }
+
+  &:after {
+    background: var(--border-color);
+    content: '';
+    display: block;
+    height: 1rem;
+    left: 0.5rem;
+    position: absolute;
+    width: 0.25rem;
+  }
+}

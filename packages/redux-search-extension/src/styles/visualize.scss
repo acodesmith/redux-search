@@ -1,0 +1,31 @@
+.rs-visualize-item {
+  padding: 0.5rem 1rem;
+  border-bottom: 1px solid var(--border-color);
+}
+
+.rs-visualize-item:last-of-type {
+  border-bottom: none;
+}
+
+.rs-visualize-wrapper .item-accessor {
+  color: var(--item-color);
+  display: flex;
+  flex-wrap: wrap;
+  padding-bottom: 0.25rem;
+
+  span {
+    padding: 0.25rem 0;
+  }
+
+  span em {
+    padding: 0 0.5rem;
+  }
+
+  span:last-of-type em {
+    display: none;
+  }
+}
+
+.rs-visualize-wrapper .item-value {
+  color: var(--main-color);
+}

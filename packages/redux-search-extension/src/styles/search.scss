@@ -1,0 +1,27 @@
+.rs-search-wrapper {
+  align-items: center;
+  border-bottom: 1px solid var(--border-color);
+  display: flex;
+  padding: 0.5rem;
+
+  label {
+    position: absolute;
+    width: 0;
+    height: 0;
+    left: -1000px;
+  }
+
+  input {
+    background: transparent;
+    border: none;
+    color: var(--input-color);
+    flex: 1;
+    font-size: 1rem;
+    margin-left: 0.5rem;
+
+    &:focus,
+    &:active {
+      outline: none;
+    }
+  }
+}

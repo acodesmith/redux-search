@@ -1,0 +1,15 @@
+.option-toggle {
+  background: transparent;
+  border: none;
+  border-bottom: 1px solid var(--border-color);
+  color: var(--border-color);
+  cursor: pointer;
+
+  svg {
+    fill: var(--border-color);
+  }
+
+  &:focus {
+    outline: none;
+  }
+}
