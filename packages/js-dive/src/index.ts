@@ -59,6 +59,15 @@ export default class JSDive {
     };
   }
 
+  config(options: JSDiveOptions) {
+    this.options = {
+      ...JSDive.defaultOptions(),
+      ...options,
+    };
+
+    return this;
+  }
+
   view() {
     return {
       match: !!this.items.length,

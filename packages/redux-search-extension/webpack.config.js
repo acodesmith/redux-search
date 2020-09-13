@@ -4,10 +4,11 @@ const path = require("path");
 module.exports = {
 	entry: {
 		background: "./src/background.js",
-		content: "./src/content.js",
 		devpanel: "./src/devpanel.js",
 		devtools: "./src/devtools.js",
+		inject: "./src/inject.ts",
 		pagewrap: "./src/pagewrap.js",
+		content: "./src/content.js",
 	},
 	output: {
 		path: path.resolve(__dirname, "dist"),

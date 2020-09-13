@@ -17,12 +17,17 @@ export const Visualize: FC<VisualizeProps> = ({ items }) => {
       {items &&
         !!items.length &&
         items.map(({ accessor, depth, type, value }) => (
-          <div className="rs-visualize-item">
+          <div
+            className="rs-visualize-item"
+            key={`${depth}-${value}-${accessor.join('-')}`}
+          >
             <div className="item-accessor">
-              {accessor.map((v: string) => (
-                <span>
+              {accessor.map((v: string, index) => (
+                <span key={`${v}-${index}`}>
                   {typeof v === 'number' ? `[${v}]` : v}
-                  <em>{'>'}</em>
+                  {accessor[index + 1] &&
+                    typeof accessor[index + 1] !== 'number' &&
+                    '.'}
                 </span>
               ))}
             </div>
