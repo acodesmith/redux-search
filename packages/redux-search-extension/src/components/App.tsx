@@ -12,6 +12,7 @@ import data from '../test-data/data.json';
 declare global {
   interface Window {
     respond: (msg: string) => void;
+    _state: any;
   }
 }
 
@@ -20,12 +21,13 @@ const diver = new JSDive();
 export const App: FC<{}> = () => {
   const [value, setValue] = useState('');
   const [{ items }, setResults] = useState({});
+  const [state, setState] = useState();
   const [display, setDisplay] = useState(DisplaySection.results);
   const displayResults = display === DisplaySection.results && value !== '';
 
   useEffect(() => {
-    document.addEventListener('syncState', (a) => {
-      console.log('the react app can sync the state', a);
+    document.addEventListener('syncState', () => {
+      setState(window._state);
     });
   });
 
@@ -34,7 +36,7 @@ export const App: FC<{}> = () => {
       <div className="rs-controls">
         <Search
           onSearch={(v: string) => {
-            setResults(diver.search(v, data).view());
+            setResults(diver.search(v, state).view());
             setValue(v);
           }}
         />

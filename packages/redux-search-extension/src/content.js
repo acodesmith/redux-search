@@ -1,11 +1,18 @@
-chrome.runtime.onConnect.addListener(function (port) {
-	console.assert(port.name == "knockknock");
-	port.onMessage.addListener(function (msg) {
-		if (msg.joke == "Knock knock")
-			port.postMessage({ question: "Who's there?" });
-		else if (msg.answer == "Madame")
-			port.postMessage({ question: "Madame who?" });
-		else if (msg.answer == "Madame... Bovary")
-			port.postMessage({ question: "I don't get it." });
-	});
-});
+var port = chrome.runtime.connect();
+
+window.addEventListener(
+	"message",
+	function (event) {
+		// We only accept messages from ourselves
+		if (event.source != window) return;
+
+		if (event.data.type && event.data.type == "REDUX_SEARCH_SYNC") {
+			console.log("Content script received: " + event.data.state);
+			port.postMessage(event.data.state);
+			chrome.runtime.sendMessage(event.data, function (response) {
+				console.log(response);
+			});
+		}
+	},
+	false
+);

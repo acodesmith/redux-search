@@ -1,18 +1,18 @@
 (function () {
   // @ts-ignore
-  window.__REDUX_SEARCH_EXTENSION__ = (store) => (next) => (action) => {
-    return next(action);
+  window.__REDUX_SEARCH_EXTENSION__ = function () {
+    console.log('__REDUX_SEARCH_EXTENSION__ middleware added');
+    return (store) => (next) => (action) => {
+      let result = next(action);
+
+      // Post new state to extension
+      console.log(result);
+      window.postMessage(
+        { type: 'REDUX_SEARCH_SYNC', state: store.getState() },
+        '*'
+      );
+
+      return result;
+    };
   };
-
-  // const name = 'tab';
-  // // @ts-ignore
-  // const bg = chrome.runtime.connect(window.__REDUX_SEARCH_ID__);
-  // console.log({ bg });
-
-  // if (bg) {
-  //   // @ts-ignore
-  //   bg.postMessage(window.__REDUX_SEARCH_ID__, { test: 123 });
-  // }
-
-  // window.postMessage({ what: 'happens' }, '*');
 })();

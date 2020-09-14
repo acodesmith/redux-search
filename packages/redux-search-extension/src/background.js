@@ -39,5 +39,15 @@ chrome.runtime.onMessageExternal.addListener(function (
 		sender,
 		sendResponse,
 	});
-	notifyDevtools({ messageFromTheApp: request });
+	notifyDevtools(request);
+});
+
+// Message from the content script
+chrome.runtime.onMessage.addListener(function (request, sender, sendResponse) {
+	console.log(
+		sender.tab
+			? "from a content script:" + sender.tab.url
+			: "from the extension"
+	);
+	notifyDevtools(request);
 });
